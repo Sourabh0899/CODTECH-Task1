@@ -1,0 +1,51 @@
+# Import libraries
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+# Load the Titanic dataset 
+data = pd.read_csv("C:/Users/ASUS/OneDrive/Desktop/INTERNSHIP/Titanic dataset.csv")
+# Preview the dataset
+data.head()
+# Data information
+data.info()
+# Descriptive statistics for numerical features
+data.describe()
+# Checking for missing values
+data.isnull().sum()
+# Drop rows
+data_cleaned = data.dropna(subset=['Age','Fare','Cabin'])
+# Plot histograms for numerical features
+data_cleaned[['Age','Fare']].hist(bins=20, figsize=(10,5), color='lightblue')
+plt.suptitle('distribution of Age and Fare')
+plt.show()
+# Count plots for categorical features
+plt.figure(figsize=(10, 5))
+sns.countplot(data=data_cleaned, x='Sex', palette='coolwarm')
+plt.title('distribution of passengers by Sex')
+plt.show()
+# Count plots for categorical features
+plt.figure(figsize=(10, 5))
+sns.countplot(data=data_cleaned, x='Pclass', palette='coolwarm')
+plt.title('distribution of passengers by Pclass')
+plt.show()
+# Count plots for categorical features
+plt.figure(figsize=(10, 5))
+sns.countplot(data=data_cleaned, x='Embarked', palette='coolwarm')
+plt.title('distribution of passengers by Embarked')
+plt.show()
+# Scatter plot 
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=data_cleaned, x='Age', y='Fare', hue='Survived', palette='coolwarm')
+plt.title('Scatter plot of Age vs Fare (colored by Survival)')
+plt.show()
+# Box plot 
+plt.figure(figsize=(8, 6))
+sns.boxplot(data=data_cleaned, x='Fare', color='Lightgreen')
+plt.title('Boxplot of Fare')
+plt.show()
+# Box plot 
+plt.figure(figsize=(8, 6))
+sns.boxplot(data=data_cleaned, x='Age', color='lightblue')
+plt.title('Boxplot of Age')
+plt.show()
